@@ -2,7 +2,7 @@
 // Verilog module for Sequence detection: 1011
 module seq_detect_1011(seq_seen, inp_bit, reset, clk);
 
-  output seq_seen;
+  output seq_seen;    //POSSIBLE BUG
   input inp_bit;
   input reset;
   input clk;
@@ -17,7 +17,7 @@ module seq_detect_1011(seq_seen, inp_bit, reset, clk);
 
   // if the current state of the FSM has the sequence 1011, then the output is
   // high
-  assign seq_seen = current_state == SEQ_1011 ? 1 : 0;
+  assign seq_seen = current_state == SEQ_1011 ? 1 : 0;  //POSSIBLE BUG
 
   // state transition
   always @(posedge clk)
@@ -46,7 +46,7 @@ module seq_detect_1011(seq_seen, inp_bit, reset, clk);
       SEQ_1:
       begin
         if(inp_bit == 1)
-          next_state = IDLE;
+          next_state = IDLE;      //BUG FOUND!!
         else
           next_state = SEQ_10;
       end
